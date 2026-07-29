@@ -38,6 +38,19 @@ node* insert2(node*l,int e){
     l->next=p;
     return p;
 }
+node* revese(node*l){
+    node *first=NULL;
+    node *second=l->next;
+    while(second!=NULL){
+        node* third=second->next;
+        second->next=first;
+        first=second;
+        second=third;
+    }
+    node *p=initlist();
+    p->next=first;
+    return p;
+}
 int main(){
     node *l=initlist();
     node *tail=get_tail(l);
@@ -45,5 +58,7 @@ int main(){
     tail=insert2(tail,2);
     tail=insert2(tail,3);
     listnode(l);
+    node *p=revese(l);
+    listnode(p);
     return 0;
 }
