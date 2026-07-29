@@ -17,6 +17,10 @@ void insert1(node*l,int e){
     l->next=p;
 }
 void listnode(node* l){
+    if(l==NULL){
+        printf("链表为空\n");
+        return;
+    }
     node *p=l->next;
     while(p!=NULL){
         printf("%d ",p->data);
