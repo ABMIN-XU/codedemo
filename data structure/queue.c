@@ -37,7 +37,7 @@ int queuefull(queue *q) {
         return 0;
     }
 }
-int enqueue(queue *q,int e) {
+int enqueue_1(queue *q,int e) {
     if(q->rear==MAX_SIZE) {
         if(queuefull(q)) {
             q->data[q->rear]=e;
@@ -50,6 +50,14 @@ int enqueue(queue *q,int e) {
     }
     q->data[q->rear]=e;
     q->rear++;
+    return 1;
+}
+int enqueue_2(queue *q,int e) {
+    if((q->rear+1)%MAX_SIZE==q->front) {
+        return 0;
+    }
+    q->data[q->rear]=e;
+    q->rear=(q->rear+1)%MAX_SIZE;
     return 1;
 }
 int main() {
