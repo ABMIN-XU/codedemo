@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 typedef struct DNode {
     int data;
     struct DNode *prev;
@@ -137,14 +136,11 @@ int main() {
     ListPrintForward(list);
     ListPrintBackward(list);
 
-    ListRemove(list, 30);
-    printf("\n=== 删除尾节点30后 ===\n");
-    ListPrintForward(list);
-    ListPrintBackward(list);
+   
 
     ListDestroy(list);
     list = NULL;
-    printf("\n链表内存已释放\n");
+    
 
     return 0;
 }
