@@ -11,29 +11,29 @@ typedef struct {
 void initTree(tree *t) {
     t->root=NULL;
 }
-int insertNode_l(treenode *t,int e) {
+treenode *insertNode_l(treenode *t,int e) {
     treenode *node=(treenode*)malloc(sizeof(treenode));
     node->data=e;
     node->left=NULL;
     node->right=NULL;
     if(t==NULL) {
         t=node;
-        return 1;
+        return node;
     }
     t->left=node;
-    return 1;
+    return t;
 }
-int insertNode_r(treenode *t,int e) {
+treenode *insertNode_r(treenode *t,int e) {
     treenode *node=(treenode*)malloc(sizeof(treenode));
     node->data=e;
     node->left=NULL;
     node->right=NULL;
     if(t==NULL) {
         t=node;
-        return 1;
+        return node;
     }
     t->right=node;
-    return 1;
+    return t;
 }
 int deleteNode(treenode *t) {
     if(t==NULL) {
@@ -44,12 +44,21 @@ int deleteNode(treenode *t) {
     free(t);
     return 1;
 }
+void printTree(treenode *t) {
+    if(t==NULL) {
+        return;
+    }
+    printf("%d ",t->data);
+    printTree(t->left);
+    printTree(t->right);
+}
 int main() {
     tree t;
     initTree(&t);
-    insertNode_l(t.root,5);
+    t.root = insertNode_l(t.root,5);
     insertNode_r(t.root,2);
-    insertNode_l(t.root->left,7);
+    t.root->left = insertNode_l(t.root->left,7);
+    printTree(t.root);
     deleteNode(t.root);
     return 0;
 }
