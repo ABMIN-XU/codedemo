@@ -4,18 +4,18 @@ vector<int> buildNext(const string &p) {
     int m = p.length();
     vector<int> next(m, 0);
     int len = 0;
-    int i = 1;
-    while (i < m) {
-        if (p[i] == p[len]) {
+    int pCur = 2;
+    while (pCur < m) {
+        if (p[pCur - 1] == p[len]) {
             len++;
-            next[i] = len;
-            i++;
+            next[pCur] = len;
+            pCur++;
         } else {
             if (len != 0) {
                 len = next[len - 1];
             } else {
-                next[i] = 0;
-                i++;
+                next[pCur] = 0;
+                pCur++;
             }
         }
     }
@@ -27,21 +27,21 @@ int kmp(const string &s, const string &p) {
     int m = p.length();
     vector<int> next = buildNext(p);
 
-    int i = 0;
-    int j = 0;
-    while (i < n) {
-        if (s[i] == p[j]) {
-            i++;
-            j++;
+    int sCur = 0;
+    int pCur = 0;
+    while (sCur < n) {
+        if (s[sCur] == p[pCur]) {
+            sCur++;
+            pCur++;
         }
-        if (j == m) {
-            return i - j;
-        } else if (i < n && s[i] != p[j]) {
-            if (j != 0) {
-                j = next[j - 1];
+        if (pCur == m) {
+            return sCur - pCur;
+        } else if (sCur < n && s[sCur] != p[pCur]) {
+            if (pCur != 0) {
+                pCur = next[pCur - 1];
             }
             else {
-                i++;
+                sCur++;
             }
         }
     }
