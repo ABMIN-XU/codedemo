@@ -10,7 +10,8 @@ vector<int> buildNext(const string &p) {
             len++;
             next[pCur] = len;
             pCur++;
-        } else {
+        }
+        else {
             if (len != 0) {
                 len = next[len - 1];
             } else {
